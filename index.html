@@ -20,7 +20,7 @@
     }
 
     #flipbook {
-      width: 100vw;
+      width: 46.2vh;
       height: 100vh;
     }
 
@@ -37,10 +37,11 @@
 
     .content-box {
       position: absolute;
-      top: 10%;
-      left: 55%;
-      max-width: 38vw;
-      font-size: 1.2vw;
+      top: 5%;
+      left: 20%;
+      right: 5%;
+      max-width: 30vw;
+      font-size: 1.0vw;
       line-height: 1.8;
       color: #000;
       background: transparent;
@@ -49,12 +50,17 @@
 
     .content-box.toc-box {
       top: 30%;
-      left: 55%;
+      left: 20%;
       transform: translateY(-30%);
     }
 
     .content-box h2 {
       font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    
+    .content-box h3 {
+      font-size: 1.1em;
       margin-bottom: 10px;
     }
 
@@ -72,6 +78,7 @@
       display: block;
       margin-bottom: 4px;
     }
+
 
     .page-number {
       position: absolute;
@@ -92,7 +99,13 @@
     .bg-inside2 { background-image: url('img/inside1.PNG'); }
     .bg-cover2  { background-image: url('img/cover2.jpg'); }
 
+    /* 모바일 대응 */
     @media (max-width: 768px) {
+      #flipbook {
+        width: 100vw;
+        height: 100vh;
+      }
+
       .content-box {
         left: 20%;
         top: 10%;
@@ -103,11 +116,34 @@
 
       .content-box.toc-box {
         top: 30% !important;
-        left:20%;
+        left: 20%;
         transform: translateY(-30%) !important;
       }
     }
+
+    /* 패드 대응 */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      #flipbook {
+        width: 60vh;
+        height: 100vh;
+      }
+
+      .content-box {
+        left: 20%;
+        right: 5%;
+        top: 10%;
+        max-width: 80%;
+        font-size: 2vw;
+      }
+
+      .content-box.toc-box {
+        top: 30%;
+        left: 20%;
+        transform: translateY(-30%);
+      }
+    }
   </style>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
 </head>
@@ -123,7 +159,7 @@
       <h2>CONTENT</h2>
       <hr class="toc-line"/>
       <a onclick="goToPage(4)">1. NOTICE</a>
-      <a onclick="goToPage(7)">2. STORY</a>
+      <a onclick="goToPage(7)">2. BACKGROUND</a>
       <a onclick="goToPage(8)">3. PROFILE</a>
     </div>
     <div class="page-number">3</div>
@@ -134,10 +170,10 @@
     <div class="content-box">
       <h2>NOTICE</h2>
       <hr class="toc-line"/>
-      <p>1. 우리는 현재 일본 도쿄도 소재 미카즈키 학원의 재학생입니다. 학년 및 나이는 고교 범위 내에서 자유롭게 설정해 주시고, 빠른 년생과 유급 설정은 불허합니다. 일본인이 아닌 타 국적 유학생 설정은 가능하나, 프로필 제출 순서에 따라 선착 3 분을 수용합니다. </p>
-      <p>2. 최소 18 명 이상 프로필 접수 시 개장이 확정됩니다. 최대 인원은 20 명으로 이상의 인원은 받지 않습니다.</p>
-      <p>2-1. 신입: @test1, @test2, @test3</p>
-      <p>2-2. SNS 유출 금지</p>
+      <p>1. 우리는 현재 일본 도쿄도 소재 미카즈키 학원의 재학생입니다. 학년 및 나이는 고교 범위 내에서 자유롭게 설정해 주시고, 빠른 년생과 유급 설정은 불허합니다.</p>
+      <p>2. 최소 18명 이상 프로필 접수 시 개장이 확정됩니다. 최대 인원은 20명으로 이상의 인원은 받지 않습니다.</p>
+      <p>스탭 (@kkkoukaguni, @mottomuzukashi, @E5tg3, @boyzindakitchen) 계정의 2 차 지인제로 운영되며, 1 차 지인 초대장 제한은 두지 않습니다. 2 차 지인일 시 밴드방 내 가입 질문에 1 차 지인 아이디를 정확히 기입해 주시기 바랍니다.</p>
+      <p>2-2. 러닝 기간 중 공개적인 SNS에서 캐릭터가 유출될 만한 요소, 캐릭터 및 오너 유추, 러닝 여부 공개 등의 행위를 금지합니다. 이는 커뮤니티 러닝 여부부터 유추할 수 있는 발언까지 모두 포함합니다. 제보 또는 직접 발각될 경우 해당 캐릭터를 즉시 하차 처리합니다.</p>
     </div>
     <div class="page-number">4</div>
   </div>
@@ -145,9 +181,9 @@
   <!-- NOTICE 2 -->
   <div class="page bg-notice">
     <div class="content-box">
-      <p>3. 필수 컨텐츠는 22시 이후 진행 예정, 정확한 시간 추후 공지</p>
-      <p>4. 출퇴근 중 캐릭터 양면 컨택은 진행 계정으로만 허용</p>
-      <p>5. 개장 후 성향 존중 필수</p>
+      <p>3. 필수 참여 단체 스토리 진행 시각은 22시 혹은 그 이후부터 진행될 예정입니다. 정확한 스토리 진행 시간은 당일 NPC 계정의 한줄 소개로 공지됩니다. 필수 참여 진행에 참여하지 않을 경우 개별적인 안내와 함께 실종 또는 사망 처리할 수 있습니다. 러닝 중 17 시간 이상 활동이 중지된 캐릭터 또한 별도 안내와 함께 사망 처리합니다. </p>
+      <p>3-1. 스토리 진행 도중 진행에 유의미한 영향을 끼치는 캐릭터의 언행은 진행 계정을 언급한 지문일 경우에만 인정합니다. 언급이 누락되었을 경우 반영하지 않습니다. 또한, 비밀 댓글과 답글 등 개인 대화를 허용하나 스토리 진행에 차질을 빚거나 특정 인원의 소외가 염려될 경우 제지할 수 있습니다.</p>
+      <p>3-2. 개장하는 본 커뮤니티는 운영진의 고유 창작물이며, 모든 설정과 스토리에 대해 참고와 복제를 엄금하고 있음을 명시합니다. </p>
     </div>
     <div class="page-number">5</div>
   </div>
@@ -155,15 +191,34 @@
   <!-- NOTICE 3 -->
   <div class="page bg-notice">
     <div class="content-box">
-      <p>6. 타 커뮤니티와 일정 겹치는 활동 지양</p>
-      <p>7. 공지 위반 시 경고 또는 탈퇴</p>
-      <p>총괄진 동반 컨택 권장, 종료 후 사건 책임 없음</p>
+      <p>4. 러닝 중 성사와 일대일을 금지하며, 메타 발언 및 과도한 개그를 금지합니다. 공지를 전부 정독했다면 프로필 내부에 사람이 살아가는데 필요하다고  생각되는 물건 한 가지를 기입해 주세요. 본 커뮤니티 러닝 중 이모티콘 및 초성 사용을 금지합니다. </p>
+      <p>5. 일정이 겹치는 타 커뮤니티와의 투커 및 쓰리커 등을 지양합니다. 러너의 활동량이 저조할 경우 조기 폐장할 수 있습니다. </p>
+      <p>6. 커뮤니티 전반에 걸쳐, 위 공지를 위반하는 행위는 경고 또는 탈퇴 조치로 이어질 수 있습니다. 커뮤니티 내부 컨택은 반드시 총괄진을 동반하여 진행해 주시기 바랍니다. 일정이 완전히 종료된 뒤부터 발생한 사건에 관해서는 총괄진이 책임지지 않으며, 애프터 또는 외부에서 일어난 불화 및 갈등 상황 또한 총괄진이 관여하지 않습니다. 다만, 엔딩 후 커뮤니티 일정 도중 발생한 일에 관한 도움이 필요할 경우 이전 페이지에 명시된 총괄진 계정으로 디엠 주세요.</p>
     </div>
     <div class="page-number">6</div>
   </div>
 
-  <div class="page bg-world"><div class="page-number">7</div></div>
-  <div class="page bg-profile"><div class="page-number">8</div></div>
+  <div class="page bg-world">
+    <div class="content-box">
+      <h2>BACKGROUND STORY</h2>
+      <hr class="toc-line"/>
+      <p> ㅤ여름이 도쿄를 통과하고 있습니다. 한낮의 시부야 스크램블은 한적합니다. 우리는 모두 도쿄도 소재의 미카즈키 고등학교의 재학생으로써, 여름 맞이 문화제를 준비하기 위해 방학 중에도 교복을 갖춰 입고 학교에 모였습니다. </p>
+      <p> ㅤ한여름의 열기에 음수대의 습기는 마를 새가 없고, 한가로운 교정에 문화제를 기대하는 은근한 분위기가 감돕니다. 종종 해안선 근처의 작은 마을에서 길목이 무너졌다는 뉴스가 전파를 타지만...... 그런 건 너무 먼 이야기고, 내일 세상이 무너져도 아무래도 좋은 십 대들입니다. </p>
+      <p> ㅤ지난 5월, 두 살 연상의 초-미인과 식을 올린 뒤 웃음을 잃지 않는 이케다 선생님께서 아침 조례를 알리는 휘슬을 붑니다. </p>
+      <h3>[문화제 D-3]</h3>
+      <h3>미카즈키, 경례!</h3>
+    </div>
+    <div class="page-number">7</div></div>
+  <div class="page bg-world">
+    <div class="content-box">
+      <h3>Q. 문화제란?</h3>
+      <p>A. 한국 고등학교의 [축제-체육대회]에 대응하는 행사로써, 매년 7월 여름 방학 중에 개최됩니다. 다양한 동아리의 부원들이 모여 음식을 나누어 먹거나 운동 경기를 즐깁니다. 일본의 [여름 축제-나츠마츠리]를 떠올리시면 이해가 쉽겠습니다. 각 동아리의 특색이 묻어난 체험 부스가 만연해 있습니다.  문화제의 대미는 불꽃놀이로, 타지에서 미카즈키의 불꽃놀이를 보러 도쿄로 건너오는 연인들이 있을 정도로 성대합니다. </p>
+      <h3>Q. 동아리방에 관하여?</h3>
+      <p>A. 체육계 동아리는 대체로 1층, 운동장 근처 별관에 딸린 체력단련실을 이용합니다. 방송부와 미술부는 본관 2층, 연극부는 본관 3층의 강당을 이용합니다.  </p>
+      <h3>Q. 미카즈키!</h3>
+      <p>A. 일본의 경제가 성행하던 1990년 무렵 모종의 사유로 무기한 휴교에 돌입했던 명문고입니다. 예체능은 물론 인문계열에서 뛰어난 성적을 보인 입시생들이 모여 학군의 위상을 드높였습니다. 휴교 기간 동안 사정이 많이 바뀌었다고는 하나, 2021년 재개교 이후 다시 과거의 위상을 찾기 위한 노력이 부단히 이루어지고 있는 추세입니다. 학교의 노후된 시설이 모두 신설로 교체되었습니다.</p>
+    </div>
+    <div class="page-number">8</div></div>
   <div class="page bg-band"><div class="page-number">9</div></div>
   <div class="page bg-inside2"><div class="page-number">10</div></div>
   <div class="page bg-cover2"><div class="page-number">11</div></div>
@@ -172,8 +227,8 @@
 <script>
   $(document).ready(function () {
     $('#flipbook').turn({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: $('#flipbook').width(),
+      height: $('#flipbook').height(),
       autoCenter: true,
       display: 'single',
       elevation: 50,
@@ -181,25 +236,21 @@
     });
 
     window.addEventListener('resize', () => {
-      $('#flipbook').turn('size', window.innerWidth, window.innerHeight);
+      $('#flipbook').turn('size', $('#flipbook').width(), $('#flipbook').height());
     });
 
     window.goToPage = function (pageNumber) {
       $('#flipbook').turn('page', pageNumber);
     };
 
-    // 중복 터치 방지용 flag
     let touchCooldown = false;
-
     $('#flipbook').on('click touchstart', function (e) {
       if (touchCooldown) return;
-
-      touchCooldown = true; // 일단 잠금
+      touchCooldown = true;
 
       const flipbook = $(this);
       const offset = flipbook.offset();
       const x = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
-
       const centerX = offset.left + flipbook.width() / 2;
 
       if (x > centerX) {
@@ -208,14 +259,12 @@
         flipbook.turn('previous');
       }
 
-      // 400ms 이후 다시 입력 허용
       setTimeout(() => {
         touchCooldown = false;
       }, 800);
     });
   });
 </script>
-
 
 </body>
 </html>
