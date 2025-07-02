@@ -18,10 +18,12 @@
       justify-content: center;
       align-items: center;
     }
+
     #flipbook {
       width: 100vw;
       height: 100vh;
     }
+
     .page {
       width: 100%;
       height: 100%;
@@ -32,6 +34,7 @@
       position: relative;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
     .content-box {
       position: absolute;
       top: 10%;
@@ -43,10 +46,18 @@
       background: transparent;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.6), -1px -1px 2px rgba(0,0,0,0.1);
     }
+
+    .content-box.toc-box {
+      top: 30%;
+      left: 55%;
+      transform: translateY(-30%);
+    }
+
     .content-box h2 {
       font-size: 1.4em;
       margin-bottom: 10px;
     }
+
     .toc-line {
       border: none;
       height: 2px;
@@ -54,12 +65,14 @@
       width: 85%;
       margin: 10px 0 20px 0;
     }
+
     .content-box a {
       color: #000;
       text-decoration: none;
       display: block;
       margin-bottom: 4px;
     }
+
     .page-number {
       position: absolute;
       bottom: 10px;
@@ -68,7 +81,7 @@
       opacity: 0.5;
     }
 
-    /* 배경 이미지 예시 */
+    /* 배경 이미지 */
     .bg-cover1  { background-image: url('img/cover1.jpg'); }
     .bg-inside1 { background-image: url('img/inside1.PNG'); }
     .bg-toc     { background-image: url('img/page.PNG'); }
@@ -81,10 +94,17 @@
 
     @media (max-width: 768px) {
       .content-box {
-        top: 30%;
-        left: 10%;
+        left: 20%;
+        top: 10%;
+        right: 5%;
         max-width: 80%;
         font-size: 4vw;
+      }
+
+      .content-box.toc-box {
+        top: 30% !important;
+        left:20%;
+        transform: translateY(-30%) !important;
       }
     }
   </style>
@@ -99,7 +119,7 @@
 
   <!-- 목차 -->
   <div class="page bg-toc">
-    <div class="content-box">
+    <div class="content-box toc-box">
       <h2>CONTENT</h2>
       <hr class="toc-line"/>
       <a onclick="goToPage(4)">1. NOTICE</a>
@@ -168,8 +188,14 @@
       $('#flipbook').turn('page', pageNumber);
     };
 
-    // 터치 또는 클릭 시 화면 기준 왼쪽/오른쪽 따라 페이지 넘기기
+    // 중복 터치 방지용 flag
+    let touchCooldown = false;
+
     $('#flipbook').on('click touchstart', function (e) {
+      if (touchCooldown) return;
+
+      touchCooldown = true; // 일단 잠금
+
       const flipbook = $(this);
       const offset = flipbook.offset();
       const x = e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX;
@@ -181,9 +207,15 @@
       } else {
         flipbook.turn('previous');
       }
+
+      // 400ms 이후 다시 입력 허용
+      setTimeout(() => {
+        touchCooldown = false;
+      }, 400);
     });
   });
 </script>
+
 
 </body>
 </html>
