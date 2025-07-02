@@ -3,67 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>분리형 책 넘기기</title>
-
-  <!-- Google Fonts: Gowun Batang -->
+  <title>책 넘기기</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
-
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       background: #dff2f5;
       font-family: 'Gowun Batang', serif;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     #flipbook {
-      width: 90vw;
-      height: 90vh;
-      margin-top: 20px;
+      width: 100vw;
+      height: 100vh;
     }
 
     .page {
-      background: white;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       width: 100%;
       height: 100%;
-      padding: 0;
-      box-sizing: border-box;
-      overflow: hidden;
+      background: white;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
     .content-box {
       position: absolute;
-      color: #000;
-      font-weight: 400;
-      background: transparent;
-      padding: 0;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.6), -1px -1px 2px rgba(0,0,0,0.1);
+      top: 10%;
+      left: 55%;
+      max-width: 38vw;
+      font-size: 1.2vw;
       line-height: 1.8;
+      color: #000;
+      background: transparent;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.6), -1px -1px 2px rgba(0,0,0,0.1);
     }
 
-    .toc-box {
+    .content-box.toc-box {
       top: 30%;
-      left: 60px;
+      left: 55%;
       transform: translateY(-30%);
-      max-width: 80%;
-    }
-
-    .notice-box {
-      top: 15%;
-      left: 40%;
-      transform: none;
-      max-width: 50%;
-      text-align: left;
     }
 
     .content-box h2 {
@@ -101,24 +88,26 @@
     .bg-notice  { background-image: url('img/page.PNG'); }
     .bg-world   { background-image: url('img/page.PNG'); }
     .bg-profile { background-image: url('img/page.PNG'); }
+    .bg-band    { background-image: url('img/page.PNG'); }
     .bg-inside2 { background-image: url('img/inside1.PNG'); }
     .bg-cover2  { background-image: url('img/cover2.jpg'); }
 
-    @media (max-width: 600px) {
-      .toc-box {
-        left: 65px;
-        font-size: 0.9em;
-      }
-      .notice-box {
-        top: 50px;
-        left: 65px;
-        font-size: 0.9em;
+    @media (max-width: 768px) {
+      .content-box {
+        left: 20%;
+        top: 10%;
+        right: 3%;
         max-width: 80%;
+        font-size: 4vw;
+      }
+
+      .content-box.toc-box {
+        top: 30% !important;
+        left: 20%;
+        transform: translateY(-30%) !important;
       }
     }
   </style>
-
-  <!-- jQuery + Turn.js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
 </head>
@@ -134,53 +123,70 @@
       <h2>CONTENT</h2>
       <hr class="toc-line"/>
       <a onclick="goToPage(4)">1. NOTICE</a>
-      <a onclick="goToPage(7)">3. STORY</a>
+      <a onclick="goToPage(7)">2. STORY</a>
       <a onclick="goToPage(8)">3. PROFILE</a>
     </div>
     <div class="page-number">3</div>
   </div>
 
-  <!-- 공지사항 페이지들 -->
-  <div class="page bg-notice" data-src="notice.html"></div>
-  <div class="page bg-notice" data-src="notice2.html"></div>
-  <div class="page bg-notice" data-src="notice3.html"></div>
+  <!-- NOTICE 1 -->
+  <div class="page bg-notice">
+    <div class="content-box">
+      <h2>NOTICE</h2>
+      <hr class="toc-line"/>
+      <p>1. 우리는 현재 일본 도쿄도 소재 미카즈키 학원의 재학생입니다. 학년 및 나이는 고교 범위 내에서 자유롭게 설정해 주시고, 빠른 년생과 유급 설정은 불허합니다. 일본인이 아닌 타 국적 유학생 설정은 가능하나, 프로필 제출 순서에 따라 선착 3 분을 수용합니다. </p>
+      <p>2. 최소 18 명 이상 프로필 접수 시 개장이 확정됩니다. 최대 인원은 20 명으로 이상의 인원은 받지 않습니다.</p>
+      <p>2-1. 신입: @test1, @test2, @test3</p>
+      <p>2-2. SNS 유출 금지</p>
+    </div>
+    <div class="page-number">4</div>
+  </div>
 
+  <!-- NOTICE 2 -->
+  <div class="page bg-notice">
+    <div class="content-box">
+      <p>3. 필수 컨텐츠는 22시 이후 진행 예정, 정확한 시간 추후 공지</p>
+      <p>4. 출퇴근 중 캐릭터 양면 컨택은 진행 계정으로만 허용</p>
+      <p>5. 개장 후 성향 존중 필수</p>
+    </div>
+    <div class="page-number">5</div>
+  </div>
 
-  <!-- 나머지 페이지들 -->
-  <div class="page bg-world" data-src="world.html"><div class="page-number">7</div></div>
-  <div class="page bg-profile" data-src="profile.html"><div class="page-number">8</div></div>
-  <div class="page bg-inside2"><div class="page-number">9</div></div>
-  <div class="page bg-cover2"><div class="page-number">10</div></div>
+  <!-- NOTICE 3 -->
+  <div class="page bg-notice">
+    <div class="content-box">
+      <p>6. 타 커뮤니티와 일정 겹치는 활동 지양</p>
+      <p>7. 공지 위반 시 경고 또는 탈퇴</p>
+      <p>총괄진 동반 컨택 권장, 종료 후 사건 책임 없음</p>
+    </div>
+    <div class="page-number">6</div>
+  </div>
+
+  <div class="page bg-world"><div class="page-number">7</div></div>
+  <div class="page bg-profile"><div class="page-number">8</div></div>
+  <div class="page bg-band"><div class="page-number">9</div></div>
+  <div class="page bg-inside2"><div class="page-number">10</div></div>
+  <div class="page bg-cover2"><div class="page-number">11</div></div>
 </div>
 
 <script>
   $(document).ready(function () {
     $('#flipbook').turn({
-      width: document.documentElement.clientWidth * 0.9,
-      height: document.documentElement.clientHeight * 0.9,
+      width: window.innerWidth,
+      height: window.innerHeight,
       autoCenter: true,
       display: 'single',
       elevation: 50,
       gradients: true,
-      acceleration: true
     });
 
     window.addEventListener('resize', () => {
-      $('#flipbook').turn('size',
-        document.documentElement.clientWidth * 0.9,
-        document.documentElement.clientHeight * 0.9
-      );
+      $('#flipbook').turn('size', window.innerWidth, window.innerHeight);
     });
 
     window.goToPage = function (pageNumber) {
       $('#flipbook').turn('page', pageNumber);
     };
-
-    $('.page[data-src]').each(function () {
-      const page = $(this);
-      const src = page.data('src');
-      page.load(src);
-    });
   });
 </script>
 
